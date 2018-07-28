@@ -9,7 +9,7 @@
 <br>Сумма вклада: <input type="text" name="summ" value="<?=$_POST["summ"]?>">
 
 <br>Срок: <select id="selectvalue" name ="period">
-	<option selected="selected"><?=$_POST["period"]?></option>
+    <option selected="selected"><?=$_POST["period"]?></option>
     <option value = "3">3 месяца</option>
     <option value = "6">6 месяцев</option>
     <option value = "9">9 месяцев</option>
@@ -36,7 +36,7 @@
 //1. Проверяем, есть ли переменная summ
 if (isset($_POST['summ']))
 {
-	//Выполняем проверку полей на заполнение
+    //Выполняем проверку полей на заполнение
     if ($_POST['summ'] == ""){
     echo "! Введите сумму";
     exit();
@@ -58,16 +58,16 @@ $summ = $_POST['summ'];
 $period = $_POST['period'];
 //3. Указываем базовую процентную ставку по вкладу (4.5%)
 $percent = 4.5;
-//4. Увеличиваем базовый процент, если не будет пополнения счета и частичного снятия средств (проверка radiobutton)
+//4. Увеличиваем базовый процент, если не будет пополнения счета и частичного снятия средств (проверка полей с radiobutton)
 if ($_POST['replenishment'] == "no"){$percent += 0.4;}
 if ($_POST['withdrawal'] == "no"){$percent += 1.2;}
 
 echo '<br><b>Доход:</b>';
-//5. Высчитаваем процент по вкладу в месяц
+//5. Вычисляем процент по вкладу в месяц
 $month_percent = $percent / 12;
 //6. Запускаем цикл по количеству месяцев
 for ($i=1; $i<$period+1; $i++){
-	//на каждом шаге цикла выводим месячный доход
+    //на каждом шаге цикла выводим месячный доход
     $month_summ = ($summ/100)*$month_percent;
     echo '<br>'.$i."-й месяц, доход: ";
     echo round($month_summ, 2);
